@@ -1,0 +1,377 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Spline Font Database",
+	"scopeName": "text.sfd",
+	"fileTypes": [
+		"sfd"
+	],
+	"firstLineMatch": "^SplineFontDB: [\\d.]+",
+	"patterns": [{
+			"include": "#sectionSplineFont"
+		},
+		{
+			"include": "#sectionChar"
+		},
+		{
+			"include": "#sections"
+		},
+		{
+			"include": "#sectionsSplineSet"
+		},
+		{
+			"include": "#sectionsSpiro"
+		},
+		{
+			"include": "#math"
+		},
+		{
+			"include": "#glyphEncoding"
+		},
+		{
+			"include": "#glyphVariants"
+		},
+		{
+			"include": "#glyphComposition"
+		},
+		{
+			"include": "#layerTag"
+		},
+		{
+			"include": "#propertyKeyString"
+		},
+		{
+			"include": "#property"
+		},
+		{
+			"include": "#string"
+		},
+		{
+			"include": "#numberHex"
+		},
+		{
+			"include": "#number"
+		}
+	],
+	"repository": {
+		"sectionSplineFont": {
+			"patterns": [{
+				"begin": "^(SplineFontDB)(:)\\s(.+)$",
+				"end": "^(EndSplineFont)$",
+				"beginCaptures": {
+					"1": {
+						"name": "keyword.control.begin.spline-font.sfd"
+					},
+					"2": {
+						"name": "punctuation.separator.dictionary.key-value.sfd"
+					},
+					"3": {
+						"name": "string.unquoted.sfd"
+					}
+				},
+				"endCaptures": {
+					"0": {
+						"name": "keyword.control.end.spline-font.sfd"
+					}
+				},
+				"name": "meta.section.char.sfd",
+				"patterns": [{
+					"include": "$self"
+				}]
+			}]
+		},
+		"sectionChar": {
+			"patterns": [{
+				"begin": "^(StartChar)(:)\\s(\\S+)$",
+				"end": "^(EndChar)$",
+				"beginCaptures": {
+					"1": {
+						"name": "keyword.control.begin.char.sfd"
+					},
+					"2": {
+						"name": "punctuation.separator.dictionary.key-value.sfd"
+					},
+					"3": {
+						"name": "entity.name.function.glyph-name.sfd"
+					}
+				},
+				"endCaptures": {
+					"0": {
+						"name": "keyword.control.end.char.sfd"
+					}
+				},
+				"name": "meta.section.char.sfd",
+				"patterns": [{
+					"include": "$self"
+				}]
+			}]
+		},
+		"sections": {
+			"begin": "^(Start|Begin)([A-Za-z]+)",
+			"end": "^(End\\2)$",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.begin.${2:/downcase}.sfd"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "keyword.control.end.${2:/downcase}.sfd"
+				}
+			},
+			"name": "meta.section.${2:/downcase}.sfd",
+			"patterns": [{
+				"include": "$self"
+			}]
+		},
+		"sectionsSplineSet": {
+			"begin": "\\b(SplineSet)$",
+			"end": "\\b(EndSplineSet)$",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.begin.spline-set.sfd"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "keyword.control.end.spline-set.sfd"
+				}
+			},
+			"name": "meta.section.spline-set.sfd",
+			"patterns": [{
+					"include": "#splineSetData"
+				},
+				{
+					"include": "$self"
+				}
+			]
+		},
+		"sectionsSpiro": {
+			"begin": "\\b(Spiro)$",
+			"end": "\\b(EndSpiro)$",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.begin.spiro.sfd"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "keyword.control.end.spiro.sfd"
+				}
+			},
+			"name": "meta.section.spiro.sfd",
+			"patterns": [{
+				"include": "#spiroData"
+			}]
+		},
+		"math": {
+			"patterns": [{
+				"match": "^(MATH:[^:]+)(:)",
+				"name": "meta.tag.math.sfd",
+				"captures": {
+					"1": {
+						"name": "entity.name.tag.math.sfd"
+					},
+					"2": {
+						"name": "punctuation.separator.dictionary.key-value.sfd"
+					}
+				}
+			}]
+		},
+		"glyphEncoding": {
+			"patterns": [{
+				"match": "^(Encoding)(:)\\s(\\S+)\\s(\\S+)\\s(\\S+)$",
+				"name": "meta.tag.glyph-encoding.sfd",
+				"captures": {
+					"1": {
+						"name": "entity.name.tag.sfd"
+					},
+					"2": {
+						"name": "punctuation.separator.dictionary.key-value.sfd"
+					},
+					"3": {
+						"name": "constant.numeric.sfd"
+					},
+					"4": {
+						"name": "constant.numeric.sfd"
+					},
+					"5": {
+						"name": "constant.numeric.sfd"
+					}
+				}
+			}]
+		},
+		"glyphVariants": {
+			"patterns": [{
+				"match": "^(GlyphVariants\\w+)(:)((?:\\s\\S+)+)$",
+				"name": "meta.tag.glyph-variants.sfd",
+				"captures": {
+					"1": {
+						"name": "entity.name.tag.sfd"
+					},
+					"2": {
+						"name": "punctuation.separator.dictionary.key-value.sfd"
+					},
+					"3": {
+						"name": "string.unquoted.sfd"
+					}
+				}
+			}]
+		},
+		"glyphComposition": {
+			"begin": "^(GlyphComposition\\w+)(:)\\s(\\d)\\s",
+			"end": "$",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.tag.sfd"
+				},
+				"2": {
+					"name": "punctuation.separator.dictionary.key-value.sfd"
+				},
+				"3": {
+					"name": "constant.numeric.sfd"
+				}
+			},
+			"name": "meta.tag.glyph-composition.sfd",
+			"patterns": [{
+					"include": "#glyphCompositionDescription"
+				},
+				{
+					"match": "\\s",
+					"name": "punctuation.separator-space.array.sfd"
+				}
+			]
+		},
+		"layerTag": {
+			"patterns": [{
+				"match": "^(Back|Fore)$",
+				"name": "entity.name.tag.layer.sfd"
+			}]
+		},
+		"propertyKeyString": {
+			"patterns": [{
+				"match": "^((?:(?:Font|Full|Family)Name)|Weight|Copyright|Version|Encoding|UnicodeInterp|NameList|Flags)(:)\\s(.*)$",
+				"name": "meta.structure.dictionary.key.sfd",
+				"captures": {
+					"1": {
+						"name": "entity.name.tag.sfd"
+					},
+					"2": {
+						"name": "punctuation.separator.dictionary.key-value.sfd"
+					},
+					"3": {
+						"name": "string.unquoted.sfd"
+					}
+				}
+			}]
+		},
+		"property": {
+			"patterns": [{
+				"match": "^([^:]+)(:)",
+				"name": "meta.tag.property.sfd",
+				"captures": {
+					"1": {
+						"name": "entity.name.tag.sfd"
+					},
+					"2": {
+						"name": "punctuation.separator.dictionary.key-value.sfd"
+					}
+				}
+			}]
+		},
+		"string": {
+			"patterns": [{
+				"begin": "(\"|')",
+				"end": "\\1",
+				"beginCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.begin.sfd"
+					}
+				},
+				"endCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.end.sfd"
+					}
+				},
+				"name": "string.quoted.sfd"
+			}]
+		},
+		"numberHex": {
+			"patterns": [{
+				"match": "0x[0-9A-Fa-f]+",
+				"name": "constant.numeric.hex.sfd"
+			}]
+		},
+		"number": {
+			"patterns": [{
+				"match": "-?(?:0|[1-9]\\d*)(?:\\.\\d+)?",
+				"name": "constant.numeric.sfd"
+			}]
+		},
+		"glyphCompositionDescription": {
+			"patterns": [{
+				"match": "\\b(\\S+)(%)([-\\d]+)(,)([-\\d]+)(,)([-\\d]+)(,)([-\\d]+)",
+				"name": "meta.structure.glyph-composition-description.sfd",
+				"captures": {
+					"1": {
+						"name": "string.unquoted.sfd"
+					},
+					"2": {
+						"name": "keyword.operator.bitwise.glyph-composition.sfd"
+					},
+					"3": {
+						"name": "constant.numeric.sfd"
+					},
+					"4": {
+						"name": "punctuation.separator.list.comma.sfd"
+					},
+					"5": {
+						"name": "constant.numeric.sfd"
+					},
+					"6": {
+						"name": "punctuation.separator.list.comma.sfd"
+					},
+					"7": {
+						"name": "constant.numeric.sfd"
+					},
+					"8": {
+						"name": "punctuation.separator.list.comma.sfd"
+					},
+					"9": {
+						"name": "constant.numeric.sfd"
+					}
+				}
+			}]
+		},
+		"splineSetData": {
+			"patterns": [{
+				"match": "^\\s*((?:-?(?:0|[1-9]\\d*)(?:\\.\\d+)?\\s)+)([clm])\\s(\\S+)$",
+				"name": "meta.structure.spline-set-data.sfd",
+				"captures": {
+					"1": {
+						"name": "constant.numeric.sfd"
+					},
+					"2": {
+						"name": "keyword.operator.bitwise.postscript-commands.sfd"
+					},
+					"3": {
+						"name": "string.unquoted.sfd"
+					}
+				}
+			}]
+		},
+		"spiroData": {
+			"patterns": [{
+				"match": "^\\s*((?:-?(?:0|[1-9]\\d*)(?:\\.\\d+)?\\s){2})([covz\\{\\[\\]])$",
+				"name": "meta.structure.spline-set-data.sfd",
+				"captures": {
+					"1": {
+						"name": "constant.numeric.sfd"
+					},
+					"2": {
+						"name": "keyword.operator.bitwise.postscript-commands.sfd"
+					}
+				}
+			}]
+		}
+	}
+}

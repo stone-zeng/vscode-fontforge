@@ -1,0 +1,26 @@
+{
+    "name": "fontforge-vscode",
+    "displayName": "fontforge-vscode",
+    "description": "FontForge support for VS Code",
+    "version": "0.0.1",
+    "publisher": "xiangdong-zeng",
+    "engines": {
+        "vscode": "^1.28.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "sfd",
+            "aliases": ["Spline Font Database", "sfd"],
+            "extensions": [".sfd"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "sfd",
+            "scopeName": "text.sfd",
+            "path": "./syntaxes/sfd.tmLanguage.json"
+        }]
+    }
+}
