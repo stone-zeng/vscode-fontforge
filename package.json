@@ -1,8 +1,8 @@
 {
     "name": "fontforge-vscode",
-    "displayName": "fontforge-vscode",
+    "displayName": "FontForge",
     "description": "FontForge support for VS Code",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "xiangdong-zeng",
     "author": {
         "name": "Xiangdong Zeng"
@@ -19,7 +19,7 @@
         "url": "https://github.com/Stone-Zeng/fontforge-vscode/issues"
     },
     "engines": {
-        "vscode": "^1.28.0"
+        "vscode": "^1.18.0"
     },
     "categories": [
         "Programming Languages"
