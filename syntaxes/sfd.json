@@ -5,7 +5,6 @@
     "fileTypes": [
         "sfd"
     ],
-    "firstLineMatch": "^SplineFontDB: [\\d.]+",
     "patterns": [{
             "include": "#sectionSplineFont"
         },

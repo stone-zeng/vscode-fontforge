@@ -4,17 +4,32 @@
     "description": "FontForge support for VS Code",
     "version": "0.0.1",
     "publisher": "xiangdong-zeng",
+    "author": {
+        "name": "Xiangdong Zeng"
+    },
+    "readme": "README.md",
+    "icon": "icon.png",
+    "license": "MIT",
+    "homepage": "https://github.com/Stone-Zeng/fontforge-vscode",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Stone-Zeng/fontforge-vscode.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Stone-Zeng/fontforge-vscode/issues"
+    },
     "engines": {
         "vscode": "^1.28.0"
     },
     "categories": [
         "Programming Languages"
     ],
+    "keywords": ["fontforge", "font"],
     "contributes": {
         "languages": [{
             "id": "sfd",
             "aliases": ["Spline Font Database", "sfd"],
-            "extensions": [".sfd", ".glyph", ".props"],
+            "extensions": [".sfd", ".glyph"],
             "configuration": "./sfd-configuration.json"
         }],
         "grammars": [{
