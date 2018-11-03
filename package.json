@@ -14,13 +14,13 @@
         "languages": [{
             "id": "sfd",
             "aliases": ["Spline Font Database", "sfd"],
-            "extensions": [".sfd"],
-            "configuration": "./language-configuration.json"
+            "extensions": [".sfd", ".glyph", ".props"],
+            "configuration": "./sfd-configuration.json"
         }],
         "grammars": [{
             "language": "sfd",
             "scopeName": "text.sfd",
-            "path": "./syntaxes/sfd.tmLanguage.json"
+            "path": "./syntaxes/sfd.json"
         }]
     }
 }
